@@ -26,3 +26,5 @@ mac o linux: source entorno\bin\activate
 ```
 pip install -r requirements.txt
 ```
+
+-Utilizamos las librerías de pytest y request
