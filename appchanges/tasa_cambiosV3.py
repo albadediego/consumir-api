@@ -8,7 +8,16 @@ modelo.getAllCoins(API_KEY)
 
 moneda = input("Ingrese un codigo de moneda: ").upper()
 
-while not moneda.isalpha() or moneda not in modelo.valores_lista:
+#or moneda not in modelo.valores_lista
+while not moneda.isalpha():
     moneda = input("Ingrese un codigo de moneda: ").upper()
 
-modelo.updateExchange(API_KEY, moneda)
+try:
+    modelo.updateExchange(API_KEY, moneda)
+    print("Rates: ", modelo.respuesta.get('quotes'))
+    value1 = modelo.moneda+'EUR'
+    value2 = modelo.moneda+'USD'
+    print("EUR: ","{:.2F}€".format(modelo.respuesta['quotes'][value1]))
+    print("USD: ","{:.2F}$".format(modelo.respuesta['quotes'][value2]))
+except ModelError as error:
+    print(error)

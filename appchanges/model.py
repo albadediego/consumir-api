@@ -1,5 +1,8 @@
 import requests as consulta
 
+class ModelError(Exception):
+    pass
+
 class ModelCoins():
     def __init__(self):
         self.url = ""
@@ -30,10 +33,7 @@ class ModelCoins():
         self.respuesta = r.json() #obtenemos la respuesta en formato de diccionario
 
         if r.status_code == 200:
-            print("Rates: ", self.respuesta.get('quotes'))
-            value1 = self.moneda+'EUR'
-            value2 = self.moneda+'USD'
-            print("EUR: ","{:.2F}€".format(self.respuesta['quotes'][value1]))
-            print("USD: ","{:.2F}$".format(self.respuesta['quotes'][value2]))
+            self.respuesta.get('quotes')
         else:
-            print("Error: ", self.respuesta['error']['code']+": "+self.respuesta['error']['message'])
+            raise ModelError(f"Error: {self.respuesta['error']['type']}: {self.respuesta['error']['info']}")
+            
