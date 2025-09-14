@@ -5,7 +5,6 @@ from model import *
 modelo = ModelCoins()
 modelo.getAllCoins(API_KEY)
 ###############################################################################
-
 moneda = input("Ingrese un codigo de moneda: ").upper()
 
 #or moneda not in modelo.valores_lista
